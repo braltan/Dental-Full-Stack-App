@@ -1,0 +1,27 @@
+  <form #signInForm="ngForm" (ngSubmit)="signInForm.valid && onSubmit(signInForm)">
+      <div style="width:30%;height:100%;margin-left: 35%;text-align:center">
+          <p-messages></p-messages>
+          <p-panel [showHeader] = "false" >
+            <img src="assets/images/logo.png" style="width: 100%;height: 100%">
+               <div class="ui-g">
+
+                  <div class="ui-g-6">{{ 'messages.username' | translate }}</div>
+                  <div class="ui-g-6">   <input type="text"  pInputText name="username" #username="ngModel" [(ngModel)]="model.username"   required>
+                    <p-message *ngIf="signInForm.submitted && !username.valid" severity="error" text="Username is required"></p-message>
+                  </div>
+                  <div class="ui-g-6">{{ 'messages.password' | translate }}</div>
+                  <div class="ui-g-6">  <input type="password" pInputText name="password" #password="ngModel" [(ngModel)]="model.password" required 
+                 >
+                    <p-message *ngIf="signInForm.submitted && !password.valid" severity="error" text="Password is required"></p-message>
+                </div>
+              </div>
+    <div align="left">
+    <p-button type="submit" label="{{ 'messages.login' | translate }}"> </p-button>
+ <p-dropdown [style]="{'float': 'right'}"  [options]="languages" (onChange)="onChangeLanguage()" [(ngModel)]="language" name="language"></p-dropdown>
+  </div>
+      </p-panel>
+  </div>
+  </form>
+
+
+

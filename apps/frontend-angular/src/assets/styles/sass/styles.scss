@@ -1,0 +1,87 @@
+@import "abstracts/abstract";
+@import "components/panel";
+@import "components/table";
+@import "components/inputfield";
+p {
+    font-family: Lato;
+  }
+  
+  h5 {
+    color: #ffffff;
+  }
+  
+  :focus {
+    outline: 0 !important;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
+  }
+  *.p-focus {
+    outline: 0 !important;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
+  }
+  
+  html {
+    height: 100%;
+  }
+  
+  body {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.162791px;
+    /*overflow: hidden;*/
+    background: #1e1e1e !important;
+    color: #ffffff;
+    height: 100%;
+  }
+  
+  .container-fluid {
+    height: 100vh;
+  }
+  
+  .p-component {
+    font-family: "Roboto", Helvetica, sans-serif;
+    font-size: 14px;
+    color: #ffffff;
+  }
+  
+  .p-component-content,
+  .p-component-content a {
+    color: #ffffff;
+  }
+  ::-webkit-scrollbar-track {
+    /* 	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); */
+    border-radius: 2px;
+    background-color: #363b45;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 4px;
+    background-color: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    /* 	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3); */
+    background: #363b45;
+  }
+  
+  ::-moz-placeholder {
+    /* Firefox 19+ */
+    opacity: 1;
+  }
+  
+  ::-webkit-input-placeholder {
+    /* Edge */
+    opacity: 1;
+  }
+  
+  :-ms-input-placeholder {
+    /* Internet Explorer */
+    opacity: 1;
+  }
+  
+  ::placeholder {
+    opacity: 1;
+  }

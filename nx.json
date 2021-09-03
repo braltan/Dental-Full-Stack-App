@@ -1,0 +1,19 @@
+{
+  "implicitDependencies": {
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    ".eslintrc.json": "*"
+  },
+  "affected": { "defaultBase": "master" },
+  "npmScope": "dental-full-stack-app",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": { "cacheableOperations": ["build", "lint", "test"] }
+    }
+  },
+  "projects": {
+    "backend": { "tags": [] },
+    "models": { "tags": [] },
+    "frontend-angular": { "tags": [] }
+  }
+}

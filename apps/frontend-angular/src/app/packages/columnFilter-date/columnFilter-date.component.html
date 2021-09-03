@@ -1,0 +1,21 @@
+<p-columnFilter 
+    #columnFilterForDate 
+    [matchModeOptions]="matchModeOptionsForCalendar"
+    [field]="field" type="date" display="menu"
+    [showMatchModes]="true" [showOperator]="false" [showAddButton]="true"                                 
+>
+
+    <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+        <p-calendar 
+            #calendarForFilteringDate
+            styleClass="calendar-filtering"
+            [showTime]="true" 
+            showSeconds="true"
+            [ngModel]="value" 
+            dateFormat="dd.mm.yy"
+            name="value"
+            (onSelect)="setFilterValues(calendarForFilteringDate.value, tableId)"
+        ></p-calendar>
+    </ng-template>
+
+</p-columnFilter>

@@ -1,0 +1,152 @@
+<p-panel  [showHeader]="false">   
+    <p-table #tableId [value]="patientList" [columns]="selectedColumns" [paginator]="true" [rows]="10"
+        paginatorAlwaysVisible="true" [showCurrentPageReport]="true" [scrollable]="true" scrollHeight="flex"
+        currentPageReportTemplate="{{'messages.total' | translate}} {totalRecords} {{'messages.records' | translate}}" [rowsPerPageOptions]="[10,25,50]">
+        <ng-template pTemplate="caption">
+            <div>
+                <button   type="submit" pButton class="p-button-link"  icon="pi pi-plus" (click)="add()" label="{{'messages.add' | translate}}"> </button>
+                <div style="float: right;">
+                    <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportToExcel()" class="p-button-link"  pTooltip="XLS" tooltipPosition="top"></button>
+                    <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportToPDF()" class="p-button-link" pTooltip="PDF" tooltipPosition="top"></button>
+                <p-multiSelect [options]="selectableColumns" [(ngModel)]="selectedColumns" [showHeader]="false" styleClass="columntoggler" 
+                displaySelectedLabel="false"  dropdownIcon="pi pi-bars">
+                <ng-template let-column pTemplate="item">
+                  {{ 'messages.' + column.value | translate }}
+                </ng-template>
+              </p-multiSelect>
+                </div>
+            </div>
+           
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">
+                    <div>
+                        <span>
+                            {{ 'messages.' + col | translate }}
+                            <p-sortIcon [pSortableColumn]="col" [field]="col"></p-sortIcon>
+                            <p-columnFilter type="text" [field]="col" display="menu"></p-columnFilter>
+                        </span>
+                    </div>
+                </th>
+                <th>
+                    {{ 'messages.remainingFee' | translate }}
+                </th>
+                <th>
+                    {{ 'messages.actions' | translate }}
+                </th>
+            </tr>
+        </ng-template>
+    
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData">
+            
+                <td  *ngFor="let col of columns">
+                    <ng-container *ngIf="col === 'totalFee'">
+                        ₺{{rowData[col]}} 
+                    </ng-container>
+                    <ng-container *ngIf="col !== 'totalFee'">
+                        {{rowData[col]}}
+                    </ng-container>
+                    
+                </td>
+                <td>
+                    ₺{{getRemainingFee(rowData)}}
+                </td>
+                <td>
+                    <button pButton type="submit"  icon="pi pi-search"   class="p-button-link" style="margin-left: 2%"  placeholder="Bottom"
+                    (click)="openPaymentList(rowData)"></button>
+                    <button pButton type="submit"  icon="pi pi-pencil"   class="p-button-link" style="margin-left: 2%"  placeholder="Bottom"
+                        (click)="update(rowData)"></button>
+                    <button pButton type="submit" icon="pi pi-trash"  class="p-button-link" style="margin-left: 2%"   placeholder="Bottom"
+                        (click)="delete(rowData)"></button>
+                        
+                </td>
+            </tr>
+        </ng-template>
+    
+    </p-table>
+</p-panel>
+
+    <form  id="example-form" #exampleForm="ngForm" (ngSubmit)="exampleForm.valid && save(exampleForm)" >
+        <p-dialog  [(visible)]="panelVisible" [modal]="true" [draggable]="false" [resizable]="false" [baseZIndex]="10000">
+
+                                    <div class="p-fluid p-grid">
+                                        <div class="p-field p-col-12 p-md-12">
+                                            <span class="p-float-label">
+                                                <input type="text" pInputText name="name" #name="ngModel"
+                                            [(ngModel)]="patient.name" [ngClass]="{'p-invalid': exampleForm.submitted && !name.valid}" required>
+                                                <label for="name">{{ 'messages.name' | translate }}</label>
+                                            </span>
+                                            <small class="p-invalid"  *ngIf="exampleForm.submitted && !name.valid" id="name-required">
+                                                {{ 'messages.required' | translate }}
+                                              </small>
+                                        </div>  
+                                        <div class="p-field p-col-12 p-md-12">
+                                            <span class="p-float-label ">
+                                            <input type="text"  pInputText name="surname" #surname="ngModel"
+                                            [(ngModel)]="patient.surname" [ngClass]="{'p-invalid': exampleForm.submitted && !surname.valid}" required>
+                                                <label for="surname">{{ 'messages.surname' | translate }}</label>
+                                            </span>
+                                            <small class="p-invalid"  *ngIf="exampleForm.submitted && !surname.valid" id="surname-required">
+                                                {{ 'messages.required' | translate }}
+                                              </small>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-12">
+                                            <span class="p-float-label ">
+                                            <input type="text"  pInputText name="tcId" #tcId="ngModel"
+                                            [(ngModel)]="patient.tcId" [ngClass]="{'p-invalid': exampleForm.submitted && !tcId.valid}" required>
+                                                <label for="tcId">{{ 'messages.tcId' | translate }}</label>
+                                            </span>
+                                            <small class="p-invalid"  *ngIf="exampleForm.submitted && !tcId.valid" id="tcId-required">
+                                                {{ 'messages.required' | translate }}
+                                              </small>
+                                        </div> 
+                                        <div class="p-field p-col-12 p-md-12">
+                                            <span class="p-float-label ">
+                                            <p-inputMask [(ngModel)]="patient.phoneNumber" mask="(999) 999-99-99" name="phoneNumber" 
+                                            #phoneNumber="ngModel" [ngClass]="{'p-invalid': exampleForm.submitted && !phoneNumber.valid}" required>
+                                            </p-inputMask>
+                                                <label for="phoneNumber">{{ 'messages.phoneNumber' | translate }}</label>
+                                            </span>
+                                            <small class="p-invalid"  *ngIf="exampleForm.submitted && !phoneNumber.valid" id="phoneNumber-required">
+                                                {{ 'messages.required' | translate }}
+                                              </small>
+                                        </div> 
+                                    <div class="p-field p-col-12 p-md-12">
+                                        <span class="p-float-label ">
+                                        <textarea pInputTextarea name="address" #address="ngModel"
+                                        [(ngModel)]="patient.address" [ngClass]="{'p-invalid': exampleForm.submitted && !address.valid}" required>
+                                    </textarea>
+                   
+                                            <label for="address">{{ 'messages.address' | translate }}</label>
+                                        </span>
+                                        <small class="p-invalid"  *ngIf="exampleForm.submitted && !address.valid" id="address-required">
+                                            {{ 'messages.required' | translate }}
+                                          </small>
+                                    </div>
+                                    <div class="p-field p-col-12 p-md-12">
+                                        <span class="p-float-label ">
+  
+                                        <p-inputNumber  mode="currency" currency="TRY" locale="tr-TR"  [minFractionDigits]="2" name="totalFee" #totalFee="ngModel"
+                                        [(ngModel)]="patient.totalFee" [ngClass]="{'p-invalid': exampleForm.submitted && !totalFee.valid}" required>
+                                    </p-inputNumber>
+                                            <label for="totalFee">{{ 'messages.totalFee' | translate }}</label>
+                                        </span>
+                                        <small class="p-invalid"  *ngIf="exampleForm.submitted && !totalFee.valid" id="totalFee-required">
+                                            {{ 'messages.required' | translate }}
+                                          </small>
+                                    </div> 
+                                </div>
+                  
+            <ng-template pTemplate="footer">
+            <button pButton type="submit"   label="{{ 'messages.save' | translate }}" placeholder="Bottom"></button>
+        </ng-template>
+    
+        </p-dialog>
+        <p-dialog  [(visible)]="paymentVisible" position="top" [modal]="true" [draggable]="false" [resizable]="false">
+            <app-payment [patient]="patient"></app-payment>
+        </p-dialog>
+    </form>
+        <p-confirmDialog key="delete" header="{{ 'messages.delete' | translate }}"  message="{{ 'messages.deleteConfirmationMessage' | translate }}" header="Confirmation"  icon='pi pi-exclamation-triangle' acceptLabel="{{ 'messages.yes' | translate }}" rejectLabel="{{ 'messages.no' | translate }}" ></p-confirmDialog>
+    

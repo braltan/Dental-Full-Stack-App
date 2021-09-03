@@ -1,0 +1,135 @@
+<p-panel  [showHeader]="false">   
+    <p-table #tableId [value]="userList" [columns]="selectedColumns" [paginator]="true" [rows]="10"
+        paginatorAlwaysVisible="true" [showCurrentPageReport]="true" [scrollable]="true" scrollHeight="flex"
+        currentPageReportTemplate="{{'messages.total' | translate}} {totalRecords} {{'messages.records' | translate}}" [rowsPerPageOptions]="[10,25,50]">
+        <ng-template pTemplate="caption">
+            <div>
+                <button   type="submit" pButton class="p-button-link"  icon="pi pi-plus" (click)="add()" label="{{'messages.add' | translate}}"> </button>
+                <div style="float: right;">
+                    <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportToExcel()" class="p-button-link"  pTooltip="XLS" tooltipPosition="top"></button>
+                    <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportToPDF()" class="p-button-link" pTooltip="PDF" tooltipPosition="top"></button>
+                    <p-multiSelect [options]="selectableColumns" [(ngModel)]="selectedColumns" [showHeader]="false" styleClass="columntoggler" 
+                    displaySelectedLabel="false"  dropdownIcon="pi pi-bars">
+                    <ng-template let-column pTemplate="item">
+                      {{ 'messages.' + column.value | translate }}
+                    </ng-template>
+                  </p-multiSelect>
+                </div>
+            </div>
+           
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">
+                    <div>
+                        <span >{{ 'messages.' + col | translate }}</span>
+                        <p-sortIcon [pSortableColumn]="col" [field]="col"></p-sortIcon>
+                        <p-columnFilter type="text" [field]="col" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th >
+                    {{ 'messages.actions' | translate }}
+                </th>
+            </tr>
+        </ng-template>
+    
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData">
+                <td  *ngFor="let col of columns">
+                    {{rowData[col]}}
+                </td>
+                <td >
+                    <button pButton type="submit"  icon="pi pi-pencil"   class="p-button-link" style="margin-left: 2%"  placeholder="Bottom"
+                        (click)="update(rowData)"></button>
+                        <button pButton type="submit"  icon="pi pi-key"  class="p-button-link" style="margin-left: 2%"  placeholder="Bottom"
+                        (click)="showPasswordPanel(rowData)"></button>
+                    <button pButton type="submit" icon="pi pi-trash"  class="p-button-link" style="margin-left: 2%"   placeholder="Bottom"
+                        (click)="delete(rowData)"></button>
+                        
+                </td>
+            </tr>
+        </ng-template>
+    
+    </p-table>
+</p-panel>
+
+<form  id="changePass-form" #changePassForm="ngForm" (ngSubmit)="changePassForm.valid && changePass(changePassForm)" >
+    <p-dialog 
+    *ngIf="passwordPanelVisible"
+    [(visible)]="passwordPanelVisible" header="{{ 'messages.changePass' | translate }}"
+    [resizable]="false" [modal]="true" [contentStyle]="{'overflow':'visible'}"
+>
+<div>
+    <div>
+            <div>
+                  <div class="p-field">
+                    <span class="p-float-label">
+                        <input type="password" 
+                        pPassword  name="password" #password="ngModel" [(ngModel)]="newPassword" 
+                        [ngClass]="{'p-invalid': changePassForm.submitted && !password.valid}" required>
+                        <label for="password">{{ 'messages.password' | translate }}</label>
+                    </span>
+                    <small class="p-invalid"  *ngIf="changePassForm.submitted && !password.valid" id="password-required">
+                        {{ 'messages.required' | translate }}
+                      </small>
+                </div>       
+            </div>     
+            </div>
+           
+    </div>
+    <div >
+        <div>
+            <p-button styleClass="p-button-link" label="{{ 'messages.cancel' | translate }}"
+            (click)="cancelChangePass()"></p-button>
+            <button pButton type="submit"   label="{{ 'messages.save' | translate }}" placeholder="Bottom"
+          ></button>
+        </div>
+    </div>
+    </p-dialog>
+    </form>
+    <form  id="example-form" #exampleForm="ngForm" (ngSubmit)="exampleForm.valid && save(exampleForm)" >
+        <p-dialog  [(visible)]="panelVisible" [modal]="true" [draggable]="false" [resizable]="false" [baseZIndex]="10000">
+
+                                    <div class="p-fluid p-grid">
+                                        <div class="p-field p-col-12 p-md-12">
+                                            <span class="p-float-label">
+                                                <input type="text" pInputText name="fullName" #fullName="ngModel"
+                                            [(ngModel)]="user.fullName" [ngClass]="{'p-invalid': exampleForm.submitted && !fullName.valid}" required>
+                                                <label for="fullName">{{ 'messages.fullName' | translate }}</label>
+                                            </span>
+                                            <small class="p-invalid"  *ngIf="exampleForm.submitted && !fullName.valid" id="fullName-required">
+                                                {{ 'messages.required' | translate }}
+                                              </small>
+                                        </div>   
+                                    <div class="p-field p-col-12 p-md-12">
+                                        <span class="p-float-label ">
+                                        <input type="text"  pInputText name="username" #userName="ngModel"
+                                        [(ngModel)]="user.username" [ngClass]="{'p-invalid': exampleForm.submitted && !userName.valid}" required>
+                                            <label for="username">{{ 'messages.username' | translate }}</label>
+                                        </span>
+                                        <small class="p-invalid"  *ngIf="exampleForm.submitted && !userName.valid" id="userName-required">
+                                            {{ 'messages.required' | translate }}
+                                          </small>
+                                    </div>
+                                      <div *ngIf="!isUpdate" class="p-field p-col-12 p-md-12 ">
+                                        <span class="p-float-label">
+                                            <input type="password" 
+                                            pPassword  name="password" #password="ngModel" [(ngModel)]="user.password" 
+                                            [ngClass]="{'p-invalid': exampleForm.submitted && !password.valid}" required>
+                                            <label for="password">{{ 'messages.password' | translate }}</label>
+                                        </span>
+                                        <small class="p-invalid"  *ngIf="exampleForm.submitted && !password.valid" id="password-required">
+                                            {{ 'messages.required' | translate }}
+                                          </small>
+                                    </div>       
+                
+                                </div>
+                  
+            <ng-template pTemplate="footer">
+            <button pButton type="submit"   label="{{ 'messages.save' | translate }}" placeholder="Bottom"></button>
+        </ng-template>
+    
+        </p-dialog>
+    </form>
+        <p-confirmDialog key="delete" header="{{ 'messages.delete' | translate }}"  message="{{ 'messages.deleteConfirmationMessage' | translate }}" header="Confirmation"  icon='pi pi-exclamation-triangle' acceptLabel="{{ 'messages.yes' | translate }}" rejectLabel="{{ 'messages.no' | translate }}" ></p-confirmDialog>
+    

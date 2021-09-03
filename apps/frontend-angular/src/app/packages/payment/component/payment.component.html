@@ -1,0 +1,91 @@
+<p-panel  #panelComponent [showHeader]="true">  
+    <ng-template pTemplate="header">
+       {{patient.name}}    {{patient.surname}}
+    </ng-template>
+    <form  id="payment-form" #paymentForm="ngForm" (ngSubmit)="paymentForm.valid && save(paymentForm)" >
+    <div  #mydiv   class="p-fluid p-grid">
+        <div class="p-field p-col-12 p-md-12">
+            <span class="p-float-label">
+                <p-calendar #date ="ngModel"
+                [showTime]="false" 
+                [(ngModel)]="payment.date" 
+                dateFormat="dd.mm.yy" 
+                name="date"
+                appendTo="body"
+                firstDayOfWeek= 1
+                [ngClass]="{'ng-invalid ng-dirty': paymentForm.submitted && !date.valid}"
+            required></p-calendar>
+                <label for="date">{{ 'messages.date' | translate }}</label>
+            </span>
+            <small class="p-invalid"  *ngIf="paymentForm.submitted && !date.valid" id="date-required">
+                {{ 'messages.required' | translate }}
+              </small>
+        </div>  
+        
+    <div class="p-field p-col-12 p-md-12">
+        <span class="p-float-label ">
+
+        <p-inputNumber  mode="currency" currency="TRY" locale="tr-TR"  [minFractionDigits]="2" name="amount" #amount="ngModel"
+        [(ngModel)]="payment.amount" [ngClass]="{'p-invalid': paymentForm.submitted && !amount.valid}" required>
+    </p-inputNumber>
+            <label for="amount">{{ 'messages.amount' | translate }}</label>
+        </span>
+        <small class="p-invalid"  *ngIf="paymentForm.submitted && !amount.valid" id="amount-required">
+            {{ 'messages.required' | translate }}
+          </small>
+    </div> 
+    <button pButton type="submit"   label="{{ 'messages.save' | translate }}" placeholder="Bottom"></button>
+    </div>
+    </form>
+
+    <p-table #tableId [value]="patient.paymentList" [columns]="paymentColumns" [paginator]="true" [rows]="10"
+        paginatorAlwaysVisible="true" [showCurrentPageReport]="true" [scrollable]="true" scrollHeight="flex"
+        currentPageReportTemplate="{{'messages.total' | translate}} {totalRecords} {{'messages.records' | translate}}" [rowsPerPageOptions]="[10,25,50]">
+
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">
+                    <div >
+                        <span>
+                            {{ 'messages.' + col | translate }}
+                            <p-sortIcon [pSortableColumn]="col" [field]="col"></p-sortIcon>
+                            <ng-container *ngIf="col !== 'date'">
+                                <p-columnFilter type="text" [appendTo]="panelComponent" [field]="col" display="menu"></p-columnFilter>
+                            </ng-container>
+                            <ng-container *ngIf="col === 'date'">
+                                <app-columnFilter-date field="{{col}}" [tableId]="tableId"></app-columnFilter-date>
+                            </ng-container>
+                        </span>
+                    </div>
+                </th>
+                <th>
+                    {{ 'messages.actions' | translate }}
+                </th>
+            </tr>
+        </ng-template>
+    
+        <ng-template pTemplate="body" let-rowData  let-columns="columns">
+            <tr [pSelectableRow]="rowData" >
+            
+                <td  *ngFor="let col of columns">
+                    <ng-container *ngIf="col === 'amount'">
+                        ₺{{rowData[col]}} 
+                    </ng-container>
+                    <ng-container *ngIf="col === 'date'">
+                        {{ rowData[col] | date :'dd/MM/yyyy'}}
+                    </ng-container>
+                    
+                </td>
+                <td>
+                    <button pButton type="button" icon="pi pi-trash"  class="p-button-link" style="margin-left: 2%"   placeholder="Bottom"
+                        (click)="delete(rowData)"></button>
+                        
+                </td>
+            </tr>
+        </ng-template>
+    
+    </p-table>
+</p-panel>
+
+        <p-confirmDialog key="delete" header="{{ 'messages.delete' | translate }}"  message="{{ 'messages.deleteConfirmationMessage' | translate }}" header="Confirmation"  icon='pi pi-exclamation-triangle' acceptLabel="{{ 'messages.yes' | translate }}" rejectLabel="{{ 'messages.no' | translate }}" ></p-confirmDialog>
+    

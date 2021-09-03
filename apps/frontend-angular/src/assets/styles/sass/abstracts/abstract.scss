@@ -1,0 +1,299 @@
+$primary-bg: #202127;
+$primary-grey: #292b32;
+$primary-dark-grey: #1e1f25;
+$primary-white: #ffffff;
+$primary-red: #e63946;
+$primary-red-hover: #f4505d;
+/* $primary-red-focus: #e63946; */ /* TODO */
+$primary-white-link:#ffffff;
+
+$secondary-blue: #3767e9;
+$secondary-blue-hover: #598bff;
+$secondary-blue-focus: #194fe4;
+
+$secondary-yellow: #eec054;
+$secondary-green: #0fa958;
+$secondary-orange: #f4a261;
+
+$secondary-grey: #5c677e;
+$secondary-light-grey: #adb5bd;
+
+$secondary-grey-5: #363b45;
+
+$default-text-color: $primary-white;
+$default-text-transparent-color: rgba(255, 255, 255, 0.6);
+$default-bg: $primary-bg;
+$default-text-hover-bg: rgba(55, 103, 233, 0.1);
+$default-text-active-bg: $secondary-blue;
+$default-border-color: $primary-white;
+
+$scrollbar-track-color: $secondary-grey-5;
+$scrollbar-thumb-color: rgba(173, 181, 189, 0.25);
+
+$placeholder-color: $primary-white;
+
+$label-default-color: rgba(255, 255, 255, 0.4);
+$label-default-color-8: rgba(255, 255, 255, 0.8);
+$label-default-color-5: rgba(255, 255, 255, 0.5);
+
+$button-text-color: $primary-white;
+$button-text-color-disabled: $secondary-light-grey;
+
+$sidebar-bg: $primary-grey;
+$sidebar-header-bg: $primary-grey;
+$sidebar-icon-color: $primary-white;
+$sidebar-icon-hover-color: $primary-white;
+$sidebar-text-color: $primary-white;
+$sidebar-text-hover-color: $primary-white;
+$sidebar-user-info-border-color: rgba(255, 255, 255, 0.1);
+
+$datatable-item-color-hover: $primary-white;
+$datatable-item-bg-hover: $primary-white;
+$datatable-item-bg-focus: $secondary-blue-focus;
+$datatable-item-bg-selected: $secondary-blue;
+$datatable-header-bg: $secondary-grey;
+$datatable-header-text-color: $primary-white;
+$datatable-odd-row-bg: $primary-grey;
+$datatable-even-row-bg: inherit;
+$datatable-body-text-color: $primary-white;
+$datatable-body-row-hover-bg: $primary-grey;
+$datatable-icon-color-hover-and-active: $secondary-light-grey;
+$paginator-text-default-color: rgba(255, 255, 255, 0.4);
+$paginator-text-active-color: $primary-white;
+$paginator-options-text-color: rgba(255, 255, 255, 0.4);
+$paginator-options-text-hover-color: $secondary-blue;
+$paginator-options-bg: $primary-grey;
+$paginator-hover-bg: rgba(55, 103, 233, 0.4);
+$datatable-column-toggler-bg: #353b46;
+$datatable-column-toggler-text-color: $primary-white;
+
+$page-header-title-color: $primary-white;
+$page-header-button-color: $primary-white;
+$page-header-button-hover-color: $primary-white;
+$page-header-button-hover-bg: rgba(55, 103, 233, 0.1);
+$page-header-button-focus-color: $secondary-blue;
+
+$checkbox-border-color: $secondary-blue;
+$checkbox-hover-bg: rgba(55, 103, 233, 0.1);
+$checkbox-blank-default-color: $primary-white;
+$checkbox-blank-hover-color: $secondary-blue;
+$checkbox-blank-disabled-color: $secondary-light-grey;
+$checkbox-active-default-color: $secondary-blue;
+$checkbox-active-hover-color: $secondary-blue-focus;
+$checkbox-active-disabled-color: $secondary-light-grey;
+$checkbox-menu-label-color: rgba(255, 255, 255, 0.4);
+$checkbox-menu-hover-label-color: $primary-white;
+$checkbox-menu-panel-bg: $primary-bg;
+$checkbox-icon-color-highlighted: $primary-white;
+
+$panel-bg: #1c1e24;
+$panel-header-bg: #21232d;
+$panel-header-text-color: $primary-white;
+$panel-text-color: $primary-white;
+
+$pfsidebar-bg: $primary-grey;
+$pfsidebar-close-icon-bg: $primary-grey;
+$pfsidebar-close-icon-color: $primary-white-link;
+$pfsidebar-close-icon-hover-color: $secondary-blue-hover;
+$pfsidebar-header-title-color: $primary-white;
+$pfdetail-sidebar-header-title-color: $primary-white;
+$pfsidebar-full-content-bg: $primary-bg;
+$pfdetail-sidebar-information-border-color: $primary-grey;
+$pfdetail-sidebar-tabs-header-color: $default-text-color;
+$pfdetail-sidebar-default-text-color: $primary-white;
+
+$clink-color: $primary-white;
+$clink-hover-color: $secondary-blue-hover;
+$clink-focus-color: $secondary-blue-focus;
+
+$accordion-header-color: $secondary-blue;
+$accordion-header-hover-color: $secondary-blue-hover;
+$accordion-header-active-color: $secondary-blue-focus;
+$accordion-header-icon-color: $primary-white;
+$accordion-sob-bg: $primary-bg;
+
+$selectbutton-group-bg: transparent;
+$selectbutton-bg: $secondary-blue-hover;
+$selectbutton-active-bg: $secondary-blue-focus;
+$selectbutton-hover-bg: $secondary-blue;
+$selectbutton-text-color: $primary-white;
+$selectbutton-hover-text-color: $selectbutton-text-color;
+$selectbutton-active-text-color: $selectbutton-text-color;
+
+$calendar-background: $primary-bg;
+$calendar-element-bg: $secondary-blue;
+$calendar-element-hover-bg: $secondary-blue-hover;
+$calendar-element-hover-text-color: $primary-white;
+$calendar-element-active-bg: $secondary-blue-focus;
+$calendar-element-active-text-color: $primary-white;
+$calendar-element-hover-color: $primary-white;
+$calendar-week-header-bg: #27292d;
+$calendar-timeinput-bg: $primary-grey;
+$calendar-timeinput-text-color: $primary-white;
+$calendar-title-color: $primary-white;
+$calendar-slider-handle-bg: $primary-white;
+$calendar-slider-bg: rgba(255, 255, 255, 0.1);
+$calendar-button-icon-color: $secondary-blue-hover;
+$calendar-button-icon-color-hover: $secondary-blue-focus;
+
+$inputtext-border-color: $secondary-grey;
+$inputtext-border-color-hover: $secondary-blue-hover;
+$inputtext-border-color-focus: $secondary-blue-focus;
+$inputtext-text-color: $primary-white;
+$inputtext-hover-bg: $secondary-blue;
+$inputtext-disabled-bg: $secondary-grey;
+$inputtext-focus-text-color: $primary-white;
+$inputtext-label-color: rgba(255, 255, 255, 0.4);
+
+$chips-token-bg: rgba(55, 103, 233, 0.2);
+$chips-token-text-color: $primary-white;
+$chips-token-icon-color: $primary-white;
+$chips-border-color: $secondary-grey;
+$chips-border-color-hover: $secondary-blue-hover;
+$chips-border-color-focus: $secondary-blue-focus;
+
+$navbar-bg: $primary-grey;
+$navbar-brand-color: $primary-white;
+$navbar-boxshadow-color: transparent;
+
+$tabs-panel-bg: $primary-dark-grey;
+$tabview-left-nav-bg: $primary-bg;
+$tabview-left-nav-color: $default-text-color;
+$tabs-panel-label-color: rgba(255, 255, 255, 0.8);
+$tabs-basic-nav-border: rgba(255, 255, 255, 0.2);
+$tabs-basic-nav-header-default-color: rgba(255, 255, 255, 0.6);
+
+$dropdown-border-color: $secondary-grey;
+$dropdown-border-color-hover: $secondary-blue-hover;
+$dropdown-border-color-focus: $secondary-blue-focus;
+$dropdown-text-color: rgba(255, 255, 255, 0.4);
+$dropdown-text-color-highlighted: $primary-white;
+$dropdown-hover-text-color: $primary-white;
+$dropdown-hover-text-bg-color: $default-text-hover-bg;
+$dropdown-panel-bg: $primary-bg;
+$dropdown-panel-item-color: rgba(255, 255, 255, 0.6);
+$dropdown-icon-color: $secondary-blue;
+
+$context-menu-border-color: $default-border-color;
+$context-menu-item-background: $primary-white;
+$context-menu-item-text-color: $default-text-color;
+$context-menu-background: $dropdown-panel-bg;
+$context-menu-box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 8px;
+$context-menu-menuitem-link-color: $dropdown-hover-text-color;
+$context-menu-menuitem-link-bg-color: $dropdown-hover-text-bg-color;
+$context-menu-menuitem-text-color: $dropdown-panel-item-color;
+$context-menu-menuitem-icon-color: $dropdown-icon-color;
+
+$dialog-bg: $secondary-grey-5;
+$dialog-text-color: $default-text-color;
+$dialog-titlebar-color: $default-text-color;
+$dialog-content-text-color: rgba(255, 255, 255, 0.8);
+$dialog-footer-bg: $secondary-grey-5;
+
+$traffic-card-bg: $primary-grey;
+$traffic-card-regular-height: 166px;
+$traffic-card-small-height: 123px;
+$traffic-card-regular-width: 452px;
+$traffic-card-small-width: 369px;
+$traffic-card-regular-img-height: 166px;
+$traffic-card-small-img-height: 123px;
+$traffic-card-regular-img-width: 150px;
+$traffic-card-small-img-width: 90px;
+$traffic-card-regular-body-height: $traffic-card-regular-height;
+$traffic-card-small-body-height: $traffic-card-small-height;
+$traffic-card-regular-body-width: calc(286px - 1rem); 
+$traffic-card-small-body-width: calc(279px - 1.5rem); 
+$traffic-card-default-text-color: $label-default-color-8;
+$traffic-card-dir-icon: $primary-white;
+
+$inputswitch-hover-shadow-color: rgba(55, 103, 233, 0.1);
+
+$radio-blank-default-color: $primary-white;
+$radio-bullet-default-color: $secondary-blue;
+$radio-blank-hover-color: $secondary-blue;
+$radio-bullet-hover-color: $secondary-blue;
+$radiobox-hover-bg: $checkbox-hover-bg;
+$radio-blank-disabled-color: $checkbox-blank-disabled-color;
+$radio-active-hover-color: $checkbox-active-hover-color;
+
+$autocomplete-border-color: $default-border-color;
+$autocomplete-hover-text-color: $primary-white;
+$autocomplete-hover-text-bg-color: $default-text-hover-bg;
+$autocomplete-panel-bg: $primary-bg;
+$autocomplete-panel-item-color: rgba(255, 255, 255, 0.6);
+
+$message-wrapper-background-color: $primary-white;
+$message-close-icon-hover-color: $primary-grey;
+
+$rating-star-color: $secondary-blue;
+$rating-star-hover-color: $secondary-blue-hover;
+$rating-reset-color: $primary-red;
+$rating-reset-hover-color: $primary-red-hover;
+
+$togglebutton-pos-color: $secondary-green;
+$togglebutton-neg-color: $primary-red;
+
+$tooltip-text-color: $primary-white;
+$tooltip-text-bg-color: $secondary-blue-hover;
+
+$fileupload-bg-color: $primary-bg;
+$fileupload-progressbar-color: $primary-white;
+$fileupload-progressbar-bg-color: $secondary-blue-hover;
+$fileupload-content-text-color: $default-text-color;
+$fileupload-content-icon-color: $secondary-blue;
+$fileupload-content-icon-hover-color: $secondary-blue-hover;
+
+$multiselect-border-color: $secondary-grey;
+$multiselect-border-color-hover: $secondary-blue-hover;
+$multiselect-border-color-focus: $secondary-blue-focus;
+$multiselect-text-color: $dropdown-text-color;
+$multiselect-text-color-highlighted: $primary-white;
+$multiselect-icon-color: $secondary-grey;
+$multiselect-icon-color-hover: $secondary-blue-hover;
+$multiselect-icon-color-item-selected: $primary-white;
+$multiselect-item-hover: $secondary-blue-hover;
+$multiselect-item-focus: $secondary-blue-focus;
+
+$tabmenu-bg: $primary-grey;
+$tabmenu-text-color: $primary-white;
+$tabmenu-text-hover-color: $primary-white;
+$tabmenuitem-hover-bg: $secondary-blue;
+$tabmenuitem-active-bg: $secondary-blue-focus;
+$tabmenuitem-icon-color: $primary-white;
+$tabmenuitem-icon-hover-color: $primary-white;
+
+$toast-wrapper-background-color: $primary-grey;
+$toast-icon-color: $secondary-blue-hover;
+$toast-icon-hover-color: $secondary-blue-focus;
+$toast-text-color: $default-text-color;
+
+$tree-text-color: $multiselect-text-color;
+$tree-text-color-highlighted: $multiselect-text-color-highlighted;
+$tree-text-bg-highlighted: $secondary-blue-hover;
+$tree-toggler-color: $multiselect-icon-color;
+$tree-toggler-color-highlighted: $multiselect-icon-color-item-selected;
+$tree-minus-icon-color: $primary-white;
+$tree-check-icon-color: $primary-white;
+
+$plainmenu-bg: $default-bg;
+$plainmenu-text-color: $default-text-color;
+$plainmenu-text-bg: $primary-grey;
+$plainmenu-text-hover-color: $primary-white;
+$plainmenu-text-hover-bg: $secondary-blue-focus;
+
+$splitter-default-bg: $default-bg;
+$splitter-resizing-bg: $default-bg;
+$splitter-default-border-color: $secondary-blue-hover;
+$splitter-first-panel-default-bg: $default-bg;
+$splitter-second-panel-default-bg: $default-bg;
+$splitter-first-panel-resizing-bg: $default-bg;
+$splitter-second-panel-resizing-bg: $default-bg;
+$splitter-gutter-default-bg: $secondary-blue-hover;
+$splitter-gutter-hover-bg: $secondary-blue-focus;
+$splitter-gutter-resizing-bg: $secondary-blue-focus;
+
+$tabview-link-color: $default-text-color;
+$tabview-link-color-hover: $primary-white-link;
+$tabview-link-color-focus: $primary-white-link;
+
+$productinfo-table-row-color: $primary-grey;

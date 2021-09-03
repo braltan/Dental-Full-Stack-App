@@ -1,0 +1,11 @@
+<ng-container
+  *ngIf="userService.loginStatus then authenticated; else notauthenticated">
+</ng-container>
+<ng-template #notauthenticated>
+<router-outlet></router-outlet>
+</ng-template>
+
+<ng-template #authenticated>
+    <app-menu></app-menu>
+    <router-outlet></router-outlet>
+    </ng-template>

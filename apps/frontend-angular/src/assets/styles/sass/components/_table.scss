@@ -1,0 +1,21 @@
+.columntoggler{
+    &.p-multiselect {
+    background: transparent !important;
+    border: 0 none !important;
+    align-items: center;
+    font-size: 1rem;
+      .p-multiselect-trigger {
+        background: transparent;
+        margin-bottom: 0.25em;
+        width: auto;
+        padding: 0.25em;
+        &:not(.p-disabled):hover {
+        }
+        .p-multiselect-trigger-icon {
+        }
+      }
+    }
+    .p-multiselect-label {
+     display: none;
+    }
+}
